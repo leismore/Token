@@ -38,9 +38,28 @@ module.exports = class Token
       throw new Error('invalid expire');
     }
 
-    this.token     = token;
-    this.generated = Math.round(generated);
-    this.expire    = Math.round(expire);
+    Object.defineProperty(this, 'token', {
+      value:        token,
+      writable:     false,
+      enumerable:   false,
+      configurable: false
+    });
+
+    Object.defineProperty(this, 'generated', {
+      value:        Math.round(generated),
+      writable:     false,
+      enumerable:   false,
+      configurable: false
+    });
+
+    Object.defineProperty(this, 'expire', {
+      value:        Math.round(expire),
+      writable:     false,
+      enumerable:   false,
+      configurable: false
+    });
+
+    Object.preventExtensions(this);
   }
 
   verify(token)
