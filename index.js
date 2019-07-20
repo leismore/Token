@@ -75,4 +75,9 @@ module.exports = class Token
       return true;
     }
   }
+
+  toString()
+  {
+    return this.token;
+  }
 };
