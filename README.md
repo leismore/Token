@@ -12,12 +12,12 @@ Define a universal authentication token class for LMOS NodeJS project.
 
 ## Example
 
-```
+```javascript
 const Token = require('@leismore/token');
-let   randomString = 'fowfjowecnnjde';
-let   token = new Token(randomString, Date.now(), Date.now()+3600000);
-let   tokenForTest = 'cjoejefje';
-console.log(token.verify(tokenForTest));
+
+Token.create().then(token=>{
+  console.log(String(token));
+});
 ```
 
 ## Data Structure
@@ -32,6 +32,22 @@ Class Token
 ```
 
 ## Methods
+
+### create
+
+```
+static async create
+(
+  bitLength = TOKEN_DEFAULT_BITLENGTH,
+  expire    = ( Date.now() + TOKEN_DEFAULT_EXPIRE * 60 * 1000 )
+)
+
+Create a Token instance
+  @param     {int}     [bitLength=TOKEN_DEFAULT_BITLENGTH] - Token bit-length (multiple of 8)
+  @param     {int}     [expire=now+30min]                  - Token expiring Unix-timestamp (millisecond)
+  @return    {Promise}                                     - A Token instance
+  @exception {Error}                                       - "invalid bit-length" | "invalid expire"
+```
 
 ### constructor
 
