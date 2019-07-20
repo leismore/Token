@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/leismore/Token/issues"
   },
-  "homepage": "https://github.com/leismore/Token#readme"
+  "homepage": "https://github.com/leismore/Token#readme",
+  "dependencies": {
+    "uid-generator": "^2.0.0"
+  }
 }
