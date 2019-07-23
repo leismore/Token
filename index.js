@@ -48,7 +48,7 @@ module.exports = class Token
       bitLength = Math.round(bitLength/8)*8;
     }
 
-    if (typeof expire !== 'number' || expire < 0)
+    if (typeof expire !== 'number')
     {
       throw new Error('invalid expire');
     }
@@ -71,12 +71,12 @@ module.exports = class Token
       throw new Error('invalid token');
     }
 
-    if (typeof generated !== 'number' || generated < 0)
+    if (typeof generated !== 'number')
     {
       throw new Error('invalid generated');
     }
 
-    if (typeof expire !== 'number' || expire < 0)
+    if (typeof expire !== 'number')
     {
       throw new Error('invalid expire');
     }
