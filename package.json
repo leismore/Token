@@ -2,7 +2,7 @@
   "name": "@leismore/token",
   "version": "3.0.0",
   "description": "An authentication token class.",
-  "main":  ".dist/index.js",
+  "main": ".dist/index.js",
   "types": ".dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,5 +24,9 @@
   "homepage": "https://github.com/leismore/Token#readme",
   "dependencies": {
     "uid-generator": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.7",
+    "@types/uid-generator": "^2.0.0"
   }
 }
