@@ -1,9 +1,9 @@
 {
   "name": "@leismore/token",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "An authentication token class.",
-  "main": ".dist/index.js",
-  "types": ".dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
