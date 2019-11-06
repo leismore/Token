@@ -27,6 +27,6 @@
   },
   "devDependencies": {
     "@types/node": "^12.11.7",
-    "@types/uid-generator": "^2.0.0"
+    "@types/uid-generator": "^2.0.2"
   }
 }

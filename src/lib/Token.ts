@@ -3,12 +3,12 @@
  */
 
 import {Token as TokenType} from './type/Token';
-import {UIDGenerator}       from 'uid-generator';
+import UIDGenerator = require('uid-generator');
 
-const TOKEN_MIN_LENGTH        = 6;   // Characters
-const TOKEN_MIN_BITLENGTH     = 32;  // Bit-length
-const TOKEN_DEFAULT_BITLENGTH = 128; // Bit-length
-const TOKEN_DEFAULT_EXPIRY    = 30;  // Minutes
+const TOKEN_MIN_SIZE        = 6;   // Characters
+const TOKEN_MIN_BITSIZE     = 32;  // Bit-length
+const TOKEN_DEFAULT_BITSIZE = 128; // Bit-length
+const TOKEN_DEFAULT_EXPIRY  = 30;  // Minutes
 
 class Token
 {
@@ -18,21 +18,27 @@ class Token
 
   /**
    * Create a Token instance
-   * @param     {int}             [bitLength=TOKEN_DEFAULT_BITLENGTH] - Token bit-length (multiple of 8)
+   * @param     {int}             [bitSize=TOKEN_DEFAULT_BITSIZE]     - Token bit-length (multiple of 8)
+   * @param     {string}          [baseEncoding=UIDGenerator.BASE58]  - Token baseEncoding
    * @param     {int|undefined}   [expiry=now+30min]                  - Token expiry Unix-timestamp (millisecond)
    * @return    {Promise<Token>}                                      - A Token instance
-   * @throw     {Error}                                               - invalid_bitLength | invalid_expiry
+   * @throw     {Error}                                               - invalid_bitSize | invalid_baseEncoding | invalid_expiry
    */
   public static async create
   (
-    bitLength: number           = TOKEN_DEFAULT_BITLENGTH,
-    expiry:    number|undefined = ( Date.now() + TOKEN_DEFAULT_EXPIRY * 60 * 1000 )
+    bitSize:      number           = TOKEN_DEFAULT_BITSIZE,
+    baseEncoding: string           = UIDGenerator.BASE58,
+    expiry:       number|undefined = ( Date.now() + TOKEN_DEFAULT_EXPIRY * 60 * 1000 )
   ):Promise<Token>
   {
-    // Test bitLength
-    bitLength = Math.round(bitLength/8) * 8;
-    if (bitLength < TOKEN_MIN_BITLENGTH)
-      { throw new Error('invalid_bitLength'); }
+    // Test bitSize
+    bitSize = Math.round(bitSize/8) * 8;
+    if (bitSize < TOKEN_MIN_BITSIZE)
+      { throw new Error('invalid_bitSize'); }
+
+    // Test baseEncoding
+    if (baseEncoding.length < 2)
+      { throw new Error('invalid_baseEncoding'); }
 
     // Test expiry
     if (expiry !== undefined)
@@ -41,7 +47,7 @@ class Token
     }
 
     // Generate token string
-    const uidgen    = new UIDGenerator(bitLength, UIDGenerator.BASE58);
+    const uidgen    = new UIDGenerator(bitSize, baseEncoding);
     const random    = await uidgen.generate();
     const generated = Date.now();
     const token     = new Token({
@@ -61,7 +67,7 @@ class Token
     let now = Date.now();
 
     // Test token string
-    if (token.token.length < TOKEN_MIN_LENGTH)
+    if (token.token.length < TOKEN_MIN_SIZE)
       { throw new Error('invalid_token'); }
 
     // Test generated timestamp
