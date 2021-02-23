@@ -1,6 +1,6 @@
 {
   "name": "@leismore/token",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "description": "An authentication token class.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -17,7 +17,7 @@
     "Random"
   ],
   "author": "Kyle Chine",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "bugs": {
     "url": "https://github.com/leismore/Token/issues"
   },
