@@ -2,5 +2,4 @@
  * Token class
  */
 
-import {Token} from './lib/Token';
-export {Token};
+export {Token, TokenType} from './lib/Token';
