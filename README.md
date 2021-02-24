@@ -14,12 +14,14 @@ Define a universal authentication token class for LMOS NodeJS project.
 
 `npm install @leismore/token`
 
+## Test
+
+`npm test`
+
 ## Example
 
 ```typescript
 import {Token} from '@leismore/token';
-// Or
-const Token = require('@leismore/token').Token;
 
 Token.create().then(token=>{
   console.log(String(token));
@@ -75,7 +77,7 @@ const TOKEN_DEFAULT_EXPIRY  = 30;  // Minutes
 
 ## License
 
-MIT License
+GNU Affero General Public License v3.0
 
 ## Authors
 
