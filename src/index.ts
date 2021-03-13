@@ -2,4 +2,4 @@
  * Token class
  */
 
-export {Token, TokenType} from './lib/Token';
+export { Token, TokenType as TokenData } from './lib/Token';
