@@ -82,3 +82,7 @@ GNU Affero General Public License v3.0
 ## Authors
 
 * [Kyle Chine](https://www.kylechine.name) (Initial Author / July 20, 2019)
+
+## Credit
+
+* This package is based on [uid-generator at NPM](https://www.npmjs.com/package/uid-generator)
