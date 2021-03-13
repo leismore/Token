@@ -53,17 +53,17 @@ class Token
   ):Promise<Token>
 
   /**
-   * @param {TokenType} token
+   * @param {TokenData} token
    * @throw {Error}     - invalid_token | invalid_generated | invalid_expiry
    */
-  public constructor(token: TokenType)
+  public constructor(token: TokenData)
 
   public verify(token:string):boolean
 
   public toString():string
 }
 
-type Token = {
+type TokenData = {
   token:     string,    // Random string
   generated: number,    // Unix timestamp (milliseconds)
   expiry?:   number     // Unix timestamp (milliseconds)
