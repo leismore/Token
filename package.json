@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "mocha './test/test.ts'"
+    "test": "mocha ./test/test.ts"
   },
   "repository": {
     "type": "git",
