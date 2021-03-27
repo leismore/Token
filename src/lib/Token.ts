@@ -12,15 +12,15 @@ const TOKEN_DEFAULT_EXPIRY  = 30;  // Minutes
 
 class Token
 {
-  public token:      string;  // Random string
-  public generated:  number;  // Unix timestamp (milliseconds)
-  public expiry?:    number;  // Unix timestamp (milliseconds)
+  public token:      string;         // Random string
+  public generated:  number;         // Unix timestamp (milliseconds)
+  public expiry:     (number|null);  // Unix timestamp (milliseconds)
 
   /**
    * Create a Token instance
    * @param     {int}             [bitSize=TOKEN_DEFAULT_BITSIZE]     - Token bit-length (multiple of 8)
    * @param     {string}          [baseEncoding=UIDGenerator.BASE58]  - Token baseEncoding
-   * @param     {int|undefined}   [expiry=now+30min]                  - Token expiry Unix-timestamp (millisecond)
+   * @param     {int|null}        [expiry=now+30min]                  - Token expiry Unix-timestamp (millisecond)
    * @return    {Promise<Token>}                                      - A Token instance
    * @throw     {Error}                                               - invalid_bitSize | invalid_baseEncoding | invalid_expiry
    */
@@ -28,7 +28,7 @@ class Token
   (
     bitSize:      number           = TOKEN_DEFAULT_BITSIZE,
     baseEncoding: string           = UIDGenerator.BASE58,
-    expiry:       number|undefined = ( Date.now() + TOKEN_DEFAULT_EXPIRY * 60 * 1000 )
+    expiry:       (number|null)    = ( Date.now() + TOKEN_DEFAULT_EXPIRY * 60 * 1000 )
   ):Promise<Token>
   {
     // Test bitSize
@@ -41,7 +41,7 @@ class Token
       { throw new Error('invalid_baseEncoding'); }
 
     // Test expiry
-    if (expiry !== undefined)
+    if (expiry !== null)
     {
       expiry = Math.round(expiry);
     }
@@ -77,7 +77,7 @@ class Token
       { token.generated = Math.round(token.generated); }
 
     // Test expiry
-    if (token.expiry !== undefined)
+    if (token.expiry !== null)
       { token.expiry = Math.round(token.expiry); }
 
     // Init
@@ -90,7 +90,7 @@ class Token
   {
     let now = Date.now();
 
-    if (this.expiry === undefined)
+    if (this.expiry === null)
     {
       if (token === this.token)
         { return true; }
