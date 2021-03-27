@@ -16,6 +16,10 @@ describe('Token class', function(){
             let t = await Token.create(undefined, undefined, (Date.now() + 60 * 60 * 1000));
             assert(t instanceof Token);
         });
+        it('Non-expire', async function(){
+            let t = await Token.create(undefined, undefined, null);
+            assert(t instanceof Token);
+        });
         it('With invalid bitSize', async function(){
             try
             { let t = await Token.create(130); }
@@ -36,6 +40,10 @@ describe('Token class', function(){
     describe('verify method', async function(){
         it('Normal', async function(){
             let t = await Token.create();
+            assert(t.verify(t.token));
+        });
+        it('Non-expiring token', async function(){
+            let t = await Token.create(undefined, undefined, null);
             assert(t.verify(t.token));
         });
         it('Expired token', async function(){
